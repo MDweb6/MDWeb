@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Salong - Professionell Hårvård</title>
+    <!-- Tailwind CSS för snabb och snygg styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome för ikoner -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Menu Redesign */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+        #mobile-menu.open .menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #mobile-menu.open .menu-item:nth-child(1) { transition-delay: 0.1s; }
+        #mobile-menu.open .menu-item:nth-child(2) { transition-delay: 0.2s; }
+        #mobile-menu.open .menu-item:nth-child(3) { transition-delay: 0.3s; }
+        #mobile-menu.open .menu-item:nth-child(4) { transition-delay: 0.4s; }
+        #mobile-menu.open .menu-item:nth-child(5) { transition-delay: 0.5s; }
+
+        /* Float back pill z-index higher than everything */
+        #back-to-web-pill {
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 overflow-x-hidden">
+
+    <!-- Floating Back Pill -->
+    <a href="index.html" id="back-to-web-pill" class="fixed bottom-6 left-6 flex items-center gap-3 bg-white/80 backdrop-blur-lg hover:bg-white p-2 pr-6 rounded-full shadow-2xl border border-white/50 transition-all hover:scale-105 active:scale-95 group">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg transition-transform group-hover:rotate-12">
+            M
+        </div>
+        <div class="flex flex-col leading-none">
+            <span class="text-[9px] uppercase tracking-widest text-stone-500 font-bold mb-0.5">Tillbaka till</span>
+            <span class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">MD Web</span>
+        </div>
+        <i class="fa-solid fa-arrow-left text-blue-600 ml-2 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-[60] transition-all duration-500 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-widest uppercase text-white transition-colors duration-500" id="nav-logo">
+                MD <span class="text-amber-600">SALONG</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-semibold text-xs uppercase tracking-widest text-stone-100 transition-colors duration-500" id="nav-links">
+                <a href="#hem" class="nav-link hover:text-amber-600 transition-colors">Hem</a>
+                <a href="#tjanster" class="nav-link hover:text-amber-600 transition-colors">Tjänster</a>
+                <a href="#galleri" class="nav-link hover:text-amber-600 transition-colors">Galleri</a>
+                <a href="#om-oss" class="nav-link hover:text-amber-600 transition-colors">Om Oss</a>
+                <a href="#kontakt" class="nav-link hover:text-amber-600 transition-colors">Kontakt</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:0701234567" class="hidden sm:block bg-amber-600 text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-amber-700 transition-all shadow-lg">
+                    Ring Nu
+                </a>
+                <button id="menu-toggle" class="md:hidden relative z-[70] p-2 focus:outline-none group">
+                    <div id="burger-icon" class="space-y-1.5">
+                        <span class="block w-8 h-0.5 bg-white transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-white ml-auto transition-all duration-300"></span>
+                        <span class="block w-8 h-0.5 bg-white transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- NEW Mobile Menu Overlay (Full Screen) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-stone-900/95 backdrop-blur-xl md:hidden flex flex-col items-center justify-center z-[65]">
+            <div class="flex flex-col items-center space-y-8 text-3xl font-serif text-white">
+                <a href="#hem" class="menu-item mobile-link hover:text-amber-500 transition-colors">Hem</a>
+                <a href="#tjanster" class="menu-item mobile-link hover:text-amber-500 transition-colors">Tjänster</a>
+                <a href="#galleri" class="menu-item mobile-link hover:text-amber-500 transition-colors">Galleri</a>
+                <a href="#om-oss" class="menu-item mobile-link hover:text-amber-500 transition-colors">Om Oss</a>
+                <a href="#kontakt" class="menu-item mobile-link hover:text-amber-500 transition-colors">Kontakt</a>
+            </div>
+            
+            <!-- Extra info in mobile menu -->
+            <div class="absolute bottom-12 flex flex-col items-center gap-6 menu-item">
+                <div class="flex gap-8 text-stone-400">
+                    <a href="#"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                </div>
+                <p class="text-stone-500 text-sm uppercase tracking-widest">Kungsgatan 12, Stockholm</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hem" class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1974" alt="Hero" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-white">
+            <div class="max-w-3xl fade-in">
+                <h2 class="text-amber-500 font-semibold tracking-[0.4em] uppercase mb-4 text-sm">Exklusivitet & Kvalitet</h2>
+                <h1 class="text-5xl md:text-8xl font-bold leading-tight mb-8 font-serif">
+                    Skönhet börjar <br><span class="text-stone-300">hos oss.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-stone-300 mb-10 leading-relaxed max-w-xl font-light">
+                    Välkommen till MD Salong. Vi är experter på att framhäva din naturliga skönhet genom professionell klippning och färgning.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#tjanster" class="bg-amber-600 text-white px-10 py-5 rounded-sm font-bold text-xs uppercase tracking-widest text-center hover:bg-amber-700 transition-all shadow-xl">
+                        Se Meny
+                    </a>
+                    <a href="#kontakt" class="border border-white/40 text-white px-10 py-5 rounded-sm font-bold text-xs uppercase tracking-widest text-center hover:bg-white hover:text-stone-900 transition-all">
+                        Besök Oss
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="tjanster" class="py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 font-serif">Våra Tjänster</h2>
+                <div class="h-1 w-20 bg-amber-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-x-20 gap-y-10 max-w-5xl mx-auto">
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Damklippning</h3>
+                        <p class="text-stone-400 text-sm italic">Inkl. tvätt, fön och lätt styling</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">550 kr</span>
+                </div>
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Herrklippning</h3>
+                        <p class="text-stone-400 text-sm italic">Klassisk eller trendig klippning</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">450 kr</span>
+                </div>
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Färg & Slingor</h3>
+                        <p class="text-stone-400 text-sm italic">Pris baseras på längd & teknik</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">fr. 990 kr</span>
+                </div>
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Skäggtrimning</h3>
+                        <p class="text-stone-400 text-sm italic">Formning med kniv & olja</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">350 kr</span>
+                </div>
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Uppsättning</h3>
+                        <p class="text-stone-400 text-sm italic">Bal, fest eller bröllop</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">fr. 800 kr</span>
+                </div>
+                <div class="border-b border-stone-100 pb-6 flex justify-between items-end hover:border-amber-600 transition-colors cursor-default">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase tracking-wider mb-1">Olaplex-behandling</h3>
+                        <p class="text-stone-400 text-sm italic">Återställer hårets struktur</p>
+                    </div>
+                    <span class="text-amber-600 font-bold">400 kr</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="galleri" class="bg-stone-50 py-24">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+            <div class="aspect-square overflow-hidden rounded-sm group">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="om-oss" class="py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=1000" class="rounded-sm shadow-2xl">
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 font-serif">Kreativitet & Kunskap</h2>
+                    <p class="text-stone-500 text-lg mb-6 leading-relaxed">
+                        På MD Salong brinner vi för hår. Med över 10 års erfarenhet i branschen erbjuder vi en service utöver det vanliga. Vi lyssnar på dina önskemål och ger råd som passar just din hårtyp och ansiktsform.
+                    </p>
+                    <p class="text-stone-500 text-lg mb-10 leading-relaxed">
+                        Varje besök börjar med en noggrann konsultation där vi diskuterar stil, färg och vårdande produkter.
+                    </p>
+                    <div class="flex gap-10">
+                        <div>
+                            <div class="text-3xl font-bold text-amber-600">100%</div>
+                            <div class="text-xs uppercase tracking-widest text-stone-400 font-bold">Passion</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-amber-600">5k+</div>
+                            <div class="text-xs uppercase tracking-widest text-stone-400 font-bold">Kunder</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="py-32 bg-stone-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-bold mb-10 font-serif">Kontakt</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-location-dot text-amber-600 text-xl mt-1"></i>
+                            <div>
+                                <p class="font-bold uppercase tracking-wider mb-1">Besök Oss</p>
+                                <p class="text-stone-400">Kungsgatan 12, 111 22 Stockholm</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-clock text-amber-600 text-xl mt-1"></i>
+                            <div>
+                                <p class="font-bold uppercase tracking-wider mb-1">Öppettider</p>
+                                <p class="text-stone-400">Mån-Fre: 10:00 - 18:00</p>
+                                <p class="text-stone-400">Lördag: 10:00 - 15:00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-phone text-amber-600 text-xl mt-1"></i>
+                            <div>
+                                <p class="font-bold uppercase tracking-wider mb-1">Telefon</p>
+                                <p class="text-stone-400">08-123 456 78</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 p-8 rounded-sm border border-white/10">
+                    <form onsubmit="event.preventDefault(); alert('Tack för ditt meddelande! Vi återkommer så snart vi kan.');">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <input type="text" placeholder="Namn" class="bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-amber-600 w-full transition-colors" required>
+                            <input type="email" placeholder="E-post" class="bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-amber-600 w-full transition-colors" required>
+                        </div>
+                        <textarea placeholder="Ditt meddelande" rows="4" class="bg-transparent border-b border-white/20 py-3 focus:outline-none focus:border-amber-600 w-full mb-8 resize-none transition-colors"></textarea>
+                        <button type="submit" class="w-full bg-white text-stone-900 font-bold uppercase tracking-[0.2em] py-5 hover:bg-amber-600 hover:text-white transition-all text-xs">
+                            Skicka Meddelande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-xl font-bold tracking-[0.4em] uppercase">MD SALONG</div>
+            <div class="flex gap-8 text-stone-400">
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+            </div>
+            <p class="text-stone-600 text-xs">© 2024 MD Salong. Inga tidsbokningar via hemsidan.</p>
+        </div>
+    </footer>
+
+    <!-- JS för Interaktivitet -->
+    <script>
+        // Navbar scroll effekt
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('nav-logo');
+        const navLinksContainer = document.getElementById('nav-links');
+        const menuToggle = document.getElementById('menu-toggle');
+        const burgerSpans = document.querySelectorAll('#burger-icon span');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', () => {
+            const isScrolled = window.scrollY > 100;
+            
+            navbar.classList.toggle('bg-white', isScrolled);
+            navbar.classList.toggle('shadow-lg', isScrolled);
+            navbar.classList.toggle('py-4', isScrolled);
+            navbar.classList.toggle('bg-transparent', !isScrolled);
+            navbar.classList.toggle('py-6', !isScrolled);
+            
+            navLogo.classList.toggle('text-stone-900', isScrolled);
+            navLogo.classList.toggle('text-white', !isScrolled);
+            
+            navLinksContainer.classList.toggle('text-stone-700', isScrolled);
+            navLinksContainer.classList.toggle('text-stone-100', !isScrolled);
+
+            // Update burger icon color based on scroll
+            if (!mobileMenu.classList.contains('open')) {
+                burgerSpans.forEach(span => {
+                    span.classList.toggle('bg-stone-900', isScrolled);
+                    span.classList.toggle('bg-white', !isScrolled);
+                });
+            }
+        });
+
+        // Mobilmeny toggle
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            
+            // Toggle body scroll
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+
+            // Transform burger to X
+            if (isOpen) {
+                burgerSpans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                burgerSpans[1].style.opacity = '0';
+                burgerSpans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                burgerSpans.forEach(span => span.classList.add('bg-white'));
+            } else {
+                burgerSpans[0].style.transform = 'none';
+                burgerSpans[1].style.opacity = '1';
+                burgerSpans[2].style.transform = 'none';
+                
+                // Revert color if not scrolled
+                const isScrolled = window.scrollY > 100;
+                burgerSpans.forEach(span => {
+                    span.classList.toggle('bg-stone-900', isScrolled);
+                    span.classList.toggle('bg-white', !isScrolled);
+                });
+            }
+        });
+
+        // Smooth scroll logik för ALLA länkar (Desktop + Mobil)
+        const allNavLinks = document.querySelectorAll('.nav-link, .mobile-link');
+
+        allNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                
+                // Om det är en intern länk (börjar med #)
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Stäng mobilmenyn ifall den är öppen
+                        if (mobileMenu.classList.contains('open')) {
+                            mobileMenu.classList.remove('open');
+                            document.body.style.overflow = '';
+                            
+                            // Reset burger icon
+                            burgerSpans[0].style.transform = 'none';
+                            burgerSpans[1].style.opacity = '1';
+                            burgerSpans[2].style.transform = 'none';
+                            const isScrolled = window.scrollY > 100;
+                            burgerSpans.forEach(span => {
+                                span.classList.toggle('bg-stone-900', isScrolled);
+                                span.classList.toggle('bg-white', !isScrolled);
+                            });
+                        }
+
+                        // Smooth scroll
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MD Web | Professionella Hemsidor som Säljer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .animate-bounce-subtle { animation: bounce-subtle 4s ease-in-out infinite; }
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-pulse-subtle { animation: pulse-subtle 3s ease-in-out infinite; }
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        /* Förhindra hopp vid scroll pga fixed header */
+        :target {
+            scroll-margin-top: 80px;
+        }
+
+        
+
+        
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+
+
+
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-5 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">M</div>
+                <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">MD Web</span>
+            </div>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#services" class="nav-link text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wider">Tjänster</a>
+                <a href="#why-us" class="nav-link text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wider">Varför oss</a>
+                <a href="#projects" class="nav-link text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors uppercase tracking-wider">Projekt</a>
+                <a href="#contact" class="nav-link bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:scale-105 transition-all">Få offert</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden p-2 text-slate-600">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden hidden">
+        <div class="flex flex-col gap-6 text-center">
+            <a href="#services" class="mobile-link text-xl font-bold text-slate-800">Tjänster</a>
+            <a href="#why-us" class="mobile-link text-xl font-bold text-slate-800">Varför oss</a>
+            <a href="#projects" class="mobile-link text-xl font-bold text-slate-800">Projekt</a>
+            <a href="#contact" class="mobile-link bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl">Få offert</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 lg:pt-56 lg:pb-40 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
+            <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-300 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-200 rounded-full blur-[100px]"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-bold mb-8 animate-bounce-subtle">
+                <span class="flex h-2 w-2 rounded-full bg-blue-600"></span>
+                Din digitala tillväxtpartner
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
+                Professionella hemsidor som får <br class="hidden lg:block" />
+                <span class="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent italic">ditt företag att växa</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-12 leading-relaxed font-medium">
+                Vi skapar moderna, snabba och mobilanpassade hemsidor som förvandlar besökare till kunder.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="hero-btn-primary w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-2xl font-extrabold text-lg shadow-2xl shadow-blue-200 hover:shadow-blue-300 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+                    Få offert
+                </a>
+                <a href="#projects" class="hero-btn-secondary w-full sm:w-auto px-10 py-5 bg-white border-2 border-slate-200 text-slate-700 rounded-2xl font-extrabold text-lg hover:bg-slate-50 transition-all flex items-center justify-center">
+                    Våra projekt
+                </a>
+            </div>
+            <div class="mt-20 relative max-w-5xl mx-auto">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border-[8px] border-white">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Preview" class="w-full h-auto" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4">Tjänster</h2>
+            <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-20">Vad vi kan hjälpa dig med</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Cards -->
+                <div class="group p-10 bg-slate-50 rounded-[2.5rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2 border border-transparent hover:border-blue-50">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-8 mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Webbdesign</h4>
+                    <p class="text-slate-600">Modern och snygg design anpassad efter ditt varumärke.</p>
+                </div>
+                <div class="group p-10 bg-slate-50 rounded-[2.5rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2 border border-transparent hover:border-blue-50">
+                    <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-8 mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Webbutveckling</h4>
+                    <p class="text-slate-600">Snabba och stabila hemsidor som fungerar överallt.</p>
+                </div>
+                <div class="group p-10 bg-slate-50 rounded-[2.5rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2 border border-transparent hover:border-blue-50">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-8 mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg></div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Mobilanpassning</h4>
+                    <p class="text-slate-600">Perfekt upplevelse på mobil, surfplatta och dator.</p>
+                </div>
+                <div class="group p-10 bg-slate-50 rounded-[2.5rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2 border border-transparent hover:border-blue-50">
+                    <div class="w-16 h-16 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-8 mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <h4 class="text-2xl font-bold text-slate-900 mb-4">Support</h4>
+                    <p class="text-slate-600">Hjälp och underhåll även efter att hemsidan är klar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="py-24 bg-blue-50/50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2">
+                <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">Varför välja MD Web?</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="flex items-center gap-4"><svg class="text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-bold text-slate-700">Personlig kontakt</span></div>
+                    <div class="flex items-center gap-4"><svg class="text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-bold text-slate-700">Enkla priser</span></div>
+                    <div class="flex items-center gap-4"><svg class="text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-bold text-slate-700">Snabb leverans</span></div>
+                    <div class="flex items-center gap-4"><svg class="text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-bold text-slate-700">Småföretagsfokus</span></div>
+                    <div class="flex items-center gap-4"><svg class="text-teal-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-bold text-slate-700">Svensk service</span></div>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Arbetsteam" class="rounded-[3rem] shadow-2xl rotate-2" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 text-center mb-4">Våra Projekt</h3>
+            <p class="text-sm font-medium text-slate-500 text-center mb-16 flex items-center justify-center gap-2">
+                <span class="inline-block px-2 py-0.5 bg-blue-50 text-blue-600 rounded text-[10px] font-bold uppercase tracking-wider">Tips</span>
+                Klicka på ett projekt för att besöka webbplatsen och se vårt arbete live.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Project 1: Frisörsalong -->
+                <a href="frasursalong.html" class="group block">
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] shadow-lg mb-6">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" alt="Frisörsalong" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-extrabold text-lg shadow-2xl transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">Besök</span>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Frisörsalong</h4>
+                    <p class="text-blue-600 font-bold uppercase text-xs">Modern företagshemsida</p>
+                </a>
+                
+                <!-- Project 2: Snickarproffsen -->
+                <a href="#" class="group block">
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] shadow-lg mb-6">
+                        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=800" alt="Snickarproffsen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-extrabold text-lg shadow-2xl transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">Besök</span>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Snickarproffsen</h4>
+                    <p class="text-blue-600 font-bold uppercase text-xs">Lokal tjänstesida</p>
+                </a>
+
+                <!-- Project 3: Rusta och matcha -->
+                <a href="#" class="group block">
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] shadow-lg mb-6">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" alt="Rusta och matcha" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-extrabold text-lg shadow-2xl transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">Besök</span>
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Rusta och matcha</h4>
+                    <p class="text-blue-600 font-bold uppercase text-xs">Karriärcoachning & Utbildning</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-20">
+            <div class="lg:w-1/2 order-2 lg:order-1"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800" class="rounded-[3rem] shadow-2xl" /></div>
+            <div class="lg:w-1/2 order-1 lg:order-2">
+                <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">Om oss</h3>
+                <p class="text-lg text-slate-600 leading-relaxed font-medium">MD Web hjälper företag att synas online med professionella och lättanvända hemsidor. Fokus ligger på enkelhet, kvalitet och resultat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-blue-600 to-teal-500 rounded-[3.5rem] p-8 md:p-16 lg:p-24 shadow-2xl flex flex-col lg:flex-row gap-20">
+                <div class="lg:w-1/2 text-white">
+                    <h2 class="text-4xl md:text-6xl font-extrabold mb-8">Redo att komma igång?</h2>
+                    <p class="text-xl text-blue-50 mb-12">Kontakta oss för en kostnadsfri offert! Vi återkommer med ett prisförslag inom 1-3 arbetsdagar.</p>
+                </div>
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl flex flex-col gap-6">
+                        <input required type="text" id="full-name" placeholder="Fullständigt namn" class="w-full px-6 py-4 bg-slate-50 rounded-2xl border border-slate-100 focus:ring-2 focus:ring-blue-600 outline-none" />
+                        <input required type="text" id="company-name" placeholder="Företagets namn" class="w-full px-6 py-4 bg-slate-50 rounded-2xl border border-slate-100 focus:ring-2 focus:ring-blue-600 outline-none" />
+                        <input required type="email" id="email" placeholder="E-post" class="w-full px-6 py-4 bg-slate-50 rounded-2xl border border-slate-100 focus:ring-2 focus:ring-blue-600 outline-none" />
+                        <textarea required id="message" rows="4" placeholder="Meddelande" class="w-full px-6 py-4 bg-slate-50 rounded-2xl border border-slate-100 focus:ring-2 focus:ring-blue-600 outline-none resize-none"></textarea>
+                        <button type="submit" class="w-full py-5 bg-slate-900 text-white rounded-2xl font-extrabold text-lg hover:bg-slate-800 transition-all">Skicka Meddelande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 py-12 border-t border-slate-200 text-center">
+        <p class="text-sm font-bold text-slate-400">© 2024 MD Web AB. Professionella hemsidor för alla företag.</p>
+    </footer>
+
+    <!-- Mobile CTA -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] md:hidden z-50">
+        <a href="#contact" class="mobile-cta-btn flex items-center justify-center gap-3 w-full py-5 bg-blue-600 text-white rounded-2xl font-extrabold text-lg shadow-2xl animate-pulse-subtle">Kontakta oss</a>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('bg-transparent', 'py-5');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('bg-transparent', 'py-5');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Smooth Scroll Logic for all internal anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                if (!targetId) return; // Ignore links without target
+                
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    const offset = 80; // Fixed header offset
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Tack för ditt meddelande! Vi återkommer med din offert inom 1-3 arbetsdagar.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
